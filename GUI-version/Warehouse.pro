@@ -27,15 +27,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
     warehouse.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    good.cpp \
+    database.cpp
 
 HEADERS += \
     warehouse.h \
-    mainwindow.h
+    mainwindow.h \
+    good.h \
+    database.h
 
 FORMS += \
-        mainwindow.ui \
-    warehouse.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

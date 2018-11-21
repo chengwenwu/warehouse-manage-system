@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Warehouse wre;
+    MainWindow wre;
 
     wre.show();
     return a.exec();

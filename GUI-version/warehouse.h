@@ -1,7 +1,7 @@
 #ifndef WAREHOUSE_H
 #define WAREHOUSE_H
-
-#include <QDialog>
+#include "good.h"
+#include "database.h"
 #include <iostream>
 #include <cstring>
 #include <stdlib.h>
@@ -15,27 +15,11 @@ namespace Ui {
 class Warehouse;
 }
 
-class Goods{
-public:
-    Goods();
-    void setId(int Id_i);
-    int getId();
-    void setName(QString name_i);
-    QString getName();
-    void setCount(int count_i);
-    int getCount();
-private:
-    int id;
-    QString name;
-    int count;
-};
-
-class Warehouse : public QDialog
+class Warehouse
 {
-    Q_OBJECT
 
 public:
-    explicit Warehouse(QWidget *parent = nullptr);
+    Warehouse();
     ~Warehouse();
     void empty();//初始化储存商品信息的vector
     bool inputCheck(string &id, QString &name, string &count);//检查用户输入的商品名和数量是否合法
@@ -56,39 +40,17 @@ public:
     //查看仓库中的name商品
     void find_goods(QString name);
     void readGoodsFromDataBase();
-private slots:
-    void on_addGoods_clicked();
-
-    void on_delGoods_clicked();
-
-    void on_showGoods_clicked();
-
-    void on_search_clicked();
-
-    void on_empty_clicked();
-
-    void on_ok_clicked();
-
-    void on_exit_clicked();
-
 private:
-    Ui::Warehouse *ui;
     vector<Goods> goods;
-    char commod;
-    template <class Type>
-    Type stringToNum(const string& str)
+    Database db;
+    int stringToNum(const string& str)
     {
         istringstream iss(str);
-        Type num;
+        int num;
         iss >> num;
         return num;
     } //模板，将字符串类型的变量变为int型
-    bool connect(const QString &dbName);
-    bool creatDataBase();
-    /*
-    @number_in:应该是更新后的数据
-    */
-    bool writeAnItemToDataBase(int id_in, QString name_in, int number_in);
+
 };
 
 #endif // WAREHOUSE_H
