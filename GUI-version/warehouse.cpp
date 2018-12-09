@@ -25,10 +25,10 @@ Warehouse::~Warehouse()
 
 void Warehouse::empty()//用来将仓库中的货物清零
 {
+    QSqlQuery query;
+    query.exec("delete from goods");
     this->goods.clear();
-   // QSqlQuery query;
-   // query.exec("delete from goods");
-    //ui->textBrowser->setText("Warehouse is empty!");
+    throw "Warehouse is empty!";
 }
 
 

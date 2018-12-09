@@ -2,6 +2,7 @@
 #define WAREHOUSE_H
 #include "good.h"
 #include "database.h"
+#include <exception>//对于所有错误的处理形式都是一样的，所以没有对异常进行分类
 #include <iostream>
 #include <cstring>
 #include <stdlib.h>

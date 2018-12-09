@@ -93,8 +93,4 @@ bool Database::connect(const QString &dbName)
         }
     }
     return true;
-
-
  }
-
-
