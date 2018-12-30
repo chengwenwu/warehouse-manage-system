@@ -33,13 +33,13 @@ public:
 
     //出货：
     //出货，对应出货模块，表示当前出货一批数量为count的name商品
-    bool delete_goods(string id,QString name, string count);
+    bool delete_goods(string id,string count);
 
     //查询：
     ///显示当前库存列表，包括商品名及其库存量
     void show_goods();
     //查看仓库中的name商品
-    void find_goods(QString name);
+    void find_goods(QString id, QString name);
     void readGoodsFromDataBase();
 private:
     vector<Goods> goods;

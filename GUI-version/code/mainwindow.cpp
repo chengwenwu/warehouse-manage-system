@@ -35,7 +35,12 @@ void MainWindow::on_delGoods_clicked()
     ui->godnum->setEnabled(true);
     ui->textBrowser->clear();
     this->commod = '2';
-    wre.show_goods();
+    try {
+       wre.show_goods();
+    } catch (QString str) {
+        this->ui->textBrowser->setText(str);
+    }
+
 }
 
 void MainWindow::on_showGoods_clicked()
@@ -45,7 +50,12 @@ void MainWindow::on_showGoods_clicked()
     ui->godnm->setEnabled(false);
     ui->godnum->setEnabled(false);
     ui->textBrowser->clear();
-    wre.show_goods();
+    try {
+        wre.show_goods();
+    } catch (QString str) {
+        this->ui->textBrowser->setText(str);
+    }
+
     this->commod = '3';
 }
 
@@ -68,7 +78,14 @@ void MainWindow::on_empty_clicked()
     ui->textBrowser->clear();
     QMessageBox massagebox(QMessageBox::Warning,"waring", "Empty warehouse?", QMessageBox::Yes|QMessageBox::No);
     if (massagebox.exec() == QMessageBox::Yes)
-            wre.empty();
+    {
+        try {
+             wre.empty();
+        } catch (QString str) {
+            this->ui->textBrowser->setText(str);
+        }
+    }
+
 }
 
 void MainWindow::on_ok_clicked()
@@ -77,24 +94,45 @@ void MainWindow::on_ok_clicked()
     {
         case '1' ://进货
         {
-            wre.add_goods(ui->id->text().toStdString(), ui->godnm ->text(),ui->godnum->text().toStdString());
-            break;
+            try {
+                wre.add_goods(ui->id->text().toStdString(), ui->godnm ->text(),ui->godnum->text().toStdString());
+                break;
+            } catch (QString str) {
+                this->ui->textBrowser->setText(str);
+                break;
+            }
         }
         case '2' ://出货
         {
+            try {
+                wre.delete_goods(ui->id->text().toStdString(),ui->godnum->text().toStdString());
+                break;
+            } catch (QString str) {
+                this->ui->textBrowser->setText(str);
+                break;
+            }
 
-            wre.delete_goods(ui->id->text().toStdString(),ui->godnm ->text(),ui->godnum->text().toStdString());
-            break;
         }
 
         case '4' ://实现查询
         {
-            wre.find_goods(ui->godnm ->text());
-            break;
+            try {
+                wre.find_goods(ui->id->text(),ui->godnm ->text());
+                break;
+            } catch (QString str) {
+                this->ui->textBrowser->setText(str);
+                break;
+            }
+
         }
         case '5' ://清空仓库
         {
-            wre.empty();
+            try {
+                wre.empty();
+            } catch (QString str) {
+                this->ui->textBrowser->setText(str);
+            }
+
         }
     }
 }
