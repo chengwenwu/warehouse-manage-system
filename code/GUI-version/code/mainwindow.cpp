@@ -6,10 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pixmap = QPixmap("../GUI-version/back.jpg").scaled(this->size());
-    QPalette palette(this->palette());
-    palette.setBrush(backgroundRole(), QBrush(pixmap));
-    setPalette(palette);
 }
 
 MainWindow::~MainWindow()
